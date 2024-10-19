@@ -10,6 +10,11 @@ int main()
 
     read(n,matrix);
 
+    if(same_row(n, matrix))
+    {
+        std::cout << "1";
+    }
+
     write(n,matrix);
 
     return 0;

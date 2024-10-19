@@ -34,7 +34,26 @@ void write(int n, int matrix[n_max][n_max])
 
 bool same_row(int n, int matrix[n_max][n_max])
 {
+
+    for(int i1=0;i1<n-1;i1++)
+        for(int i2=i1+1;i2<n;i2++)
+        {
+            bool flag=true;
+
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i1][j]!=matrix[i2][j])
+                {
+                    flag=false;
+                    break;
+                }
+            }
+
+            if(flag)
+            {
+                return true;
+            }
+        }
     
-
-
+    return false;
 }
