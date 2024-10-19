@@ -57,3 +57,20 @@ bool same_row(int n, int matrix[n_max][n_max])
     
     return false;
 }
+
+
+int min_in_column(int n, int j, int matrix[n_max][n_max])
+{
+    int min=matrix[0][j];
+
+    for(int i=1;i<n;i++)
+    {
+        if(matrix[i][j]<min)
+        {
+            min=matrix[i][j];
+        }
+    }
+
+    return min;
+
+}
