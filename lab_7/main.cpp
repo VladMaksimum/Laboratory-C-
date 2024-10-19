@@ -8,8 +8,9 @@ int main()
     int matrix[n_max][n_max];
     int n;
 
-    read(n, matrix);
+    read(n,matrix);
 
+    write(n,matrix);
 
     return 0;
 }
