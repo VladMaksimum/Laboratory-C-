@@ -74,3 +74,39 @@ int min_in_column(int n, int j, int matrix[n_max][n_max])
     return min;
 
 }
+
+
+bool simple(int x)
+{
+    if(x<=2)
+        return true;
+    else 
+    {
+        for(int i=2; i<=sqrt(x)+1; i++)
+        {
+            if(x%i==0)
+            {
+                return false;
+            }
+        }
+    }
+    
+    return true;
+}
+
+
+int max_simple(int n, int matrix[n_max][n_max])
+{
+    int max=INT_MIN;
+
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)
+        {
+            if(simple(matrix[i][j]) && matrix[i][j]>max)
+            {
+                max=matrix[i][j];
+            }
+        }
+
+    return max;
+}

@@ -8,7 +8,9 @@ int main()
     int matrix[n_max][n_max];
     int n;
 
+    std::cout << "Input" << std::endl;
     read(n,matrix);
+
 
     if(same_row(n, matrix))
     {
@@ -21,13 +23,15 @@ int main()
             {
                 if(matrix[i][j]==min)
                 {
-                    
+                    matrix[i][j]=max_simple(n,matrix);
                 }
             }
             
         }
     }
 
+
+    std::cout << "Output" << std::endl;
     write(n,matrix);
 
     return 0;
