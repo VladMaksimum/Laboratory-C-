@@ -57,7 +57,7 @@ void final_write(int n, int cnt, std::string words[n_max], int counter_letters[n
     return;
 }
 
-void clear_words(int cnt, std::string words[n_max])
+void clean_words(int cnt, std::string words[n_max])
 {
     for(int i=0;i<cnt;i++)
         for(int j=0; j<words[i].length();j++)
