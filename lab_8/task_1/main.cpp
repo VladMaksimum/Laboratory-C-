@@ -18,7 +18,7 @@ int main()
         return -1;
     }
 
-    clear_words(cnt,words);
+    clean_words(cnt,words);
     max_letters(cnt,words,counter_letters);
     sort(cnt,words,counter_letters);
 
