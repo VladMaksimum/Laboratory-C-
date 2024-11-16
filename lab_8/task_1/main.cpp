@@ -21,6 +21,7 @@ int main()
     clean_words(cnt,words);
     max_letters(cnt,words,counter_letters);
     sort(cnt,words,counter_letters);
+    delete_unsuitable_words(cnt, words, counter_letters);
 
 
     //full_write(n,cnt,words,counter_letters);
@@ -29,5 +30,3 @@ int main()
 
     return 0;
 }
-
-
