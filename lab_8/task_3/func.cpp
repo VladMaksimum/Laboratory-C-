@@ -24,21 +24,21 @@ void write(int cnt, std::string words[n_max])
 
     for(int i=0;i<cnt;i++)
     {
-        out  << words[i] << " ";
+        out << words[i] << " ";
     }
 
     return;
 
 }
 
-void find_popular_letters(int cnt, std::string words[n_max], char popular_letters[p_max])
+void find_popular_letters(int cnt, std::string words[n_max], unsigned char popular_letters[p_max])
 {
-    char letters[256]={0};
+    unsigned char letters[256]={0};
     for(int i=0; i<cnt; i++)
         for(int j=0; j<words[i].length();j++)
         {
             if(isalpha(words[i][j]))
-                letters[words[i][j]]++;
+                letters[tolower(words[i][j])]++;
         }
     
 
@@ -60,19 +60,22 @@ void find_popular_letters(int cnt, std::string words[n_max], char popular_letter
     }
 }
 
-void two_popular_in_row(int cnt, std::string words[n_max], char popular_letters[p_max])
+void two_popular_in_row(int cnt, std::string words[n_max], unsigned char popular_letters[p_max])
 {
     for(int i=0;i<cnt; i++)
-        for(int j=0; j<words[i].length()-1;j++)
+    {
+        int len=words[i].length();
+        for(int j=0; j< len - 1;j++)
         {
-            if((words[i][j]==popular_letters[0] || words[i][j]==popular_letters[1] || 
-                words[i][j]==popular_letters[2] || words[i][j]==popular_letters[3]) && 
-                (words[i][j+1]==popular_letters[0] || words[i][j+1]==popular_letters[1] || 
-                words[i][j+1]==popular_letters[2] || words[i][j+1]==popular_letters[3]))
+            if((tolower(words[i][j])==popular_letters[0] || tolower(words[i][j])==popular_letters[1] || 
+                tolower(words[i][j])==popular_letters[2] || tolower(words[i][j])==popular_letters[3]) && 
+                (tolower(words[i][j+1])==popular_letters[0] || tolower(words[i][j+1])==popular_letters[1] || 
+                tolower(words[i][j+1])==popular_letters[2] || tolower(words[i][j+1])==popular_letters[3]))
             {
                 words[i][j]=toupper(words[i][j]);
                 words[i][j+1]=toupper(words[i][j+1]);
-                words[i]= words[i]+ "(" + words[i][j] + words[i][j+1] +")";
+                words[i]= words[i] + "(" + words[i][j] + words[i][j+1] + ")";
             }
         }
+    }
 }

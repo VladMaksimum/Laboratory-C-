@@ -44,7 +44,7 @@ void final_write(int n, int cnt, std::string words[n_max], int counter_letters[n
 
     while(n!=0)
     {
-        if(words[i]==words[i+1]  ||  counter_letters[i]<3)
+        if(words[i]==words[i+1])
         {
             i++;
             continue;
@@ -105,7 +105,7 @@ void sort(int cnt, std::string words[n_max], int counter_letters[n_max])
     for(int i=0; i<cnt-1;i++)
         for(int j=i+1; j<cnt; j++)
         {
-            if(words[i].length() > words[j].length())
+            if((words[i].length() > words[j].length()) || (words[i].length() == words[j].length() && words[i] > words[j]))
             {
                 std::swap(words[i],words[j]);
                 std::swap(counter_letters[i],counter_letters[j]);
@@ -113,5 +113,22 @@ void sort(int cnt, std::string words[n_max], int counter_letters[n_max])
         }
 
     return;
+}
+
+void delete_unsuitable_words(int& cnt, std::string words[n_max], int counter_letters[n_max])
+{
+    int j=0;
+    for(int i=0; i<cnt; i++)
+    {
+        if(counter_letters[i]<3)
+        {
+            continue;
+        }
+        
+        words[j]=words[i];
+        counter_letters[j]=counter_letters[i];
+        j++;
+    }
+    cnt=j;
 }
 
