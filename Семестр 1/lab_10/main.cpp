@@ -8,7 +8,7 @@ int main()
     int n;
     fill(head,n);
     
-    if(find_palindrom(head))
+    if(!find_palindrom(head))
     {
         sort(head,n);
     }
