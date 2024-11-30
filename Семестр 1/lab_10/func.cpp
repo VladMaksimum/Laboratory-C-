@@ -151,11 +151,13 @@ void sort(Node* head, int n)
     for(int i=0; i<n-1;i++)
         for(int j=i+1; j<n; j++)
         {
-            if(element_by_index(head,i)->data <= element_by_index(head,j)->data)
+            int& element1 = element_by_index(head,i)->data;
+            int& element2 = element_by_index(head,j)->data;
+            if(element1 <= element2)
             {
-                int tmp = element_by_index(head,i)->data;
-                element_by_index(head,i)->data = element_by_index(head,j)->data;
-                element_by_index(head,j)->data = tmp;
+                int tmp = element1;
+                element1 = element2;
+                element2 = tmp;
             }
         }
 }
