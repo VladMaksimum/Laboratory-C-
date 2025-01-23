@@ -15,7 +15,7 @@ void read(int* mass, int& n)
 
 void write(int* mass, int n)
 {
-    for(int i=1; i<n+1; i++)
+    for(int i=0; i<n; i++)
         std::cout << mass[i] << " ";
 }
 
@@ -38,7 +38,6 @@ void quick_sort(int right_side, int left_side, int* mass)
             i++;
             j--;
         }
-
     }
 
     if(j>left_side)

@@ -8,7 +8,7 @@ int main()
     int n;
 
     read(mass, n);
-    quick_sort(n,0,mass);
+    quick_sort(n-1,0,mass);
     write(mass, n);
 
     return 0;
