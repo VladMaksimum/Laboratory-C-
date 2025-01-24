@@ -46,3 +46,13 @@ void quick_sort(int right_side, int left_side, int* mass)
         quick_sort(right_side,i,mass);
     
 }
+
+void swap_sort(int* mass, int n)
+{
+    for(int i=0; i<n; i++)
+        for(int j=i+1; j<n; j++)
+        {
+            if(mass[i]>mass[j])
+                std::swap(mass[i],mass[j]);
+        }
+}
