@@ -7,13 +7,11 @@ class bint
     private:
         int bi_size;
         int* bi_value;
-        bool bi_sign;
 
         void my_swap(bint a, bint b)
         {
             std::swap(a.bi_size, b.bi_size);
             std::swap(a.bi_value, b.bi_value);
-            std::swap(a.bi_sign, b.bi_sign);
         }
 
         int str_to_int(std::string& s)
@@ -35,28 +33,30 @@ class bint
         bint()
         {
             bi_size = 0;
-            bi_sign = true;
             bi_value = nullptr;
         } 
 
-        bint(std::string value): bi_size((value.length()/9) + 1), bi_value(new int[bi_size])
+        bint(std::string value): bi_size(value.length()/9), bi_value(new int[bi_size])
         {
-            if(value[0]=='-')
+            
+            if(value.length()%9!=0)
             {
-                bi_sign = false;
-                value=value.substr(1);
-            }
-
-            for(int i=0;i<bi_size;i++)
-            {
-                if(value.length()>=9)
+                bi_size++;
+                bi_value[0] = str_to_int(value.substr(0,value.length()%9));
+                value=value.substr(value.length()%9);
+            
+                for(int i=1;i<bi_size;i++)
                 {
                     bi_value[i] = str_to_int(value.substr(0,9));
                     value=value.substr(9);
                 }
-                else
+            }
+            else
+            {
+                for(int i=0;i<bi_size;i++)
                 {
-                    bi_value[i] = str_to_int(value);
+                    bi_value[i] = str_to_int(value.substr(0,9));
+                    value=value.substr(9);
                 }
             }
         }
@@ -64,7 +64,6 @@ class bint
         bint(const bint& other)
         {
             bi_size = other.bi_size;
-            bi_sign = other.bi_sign;
             bi_value = new int[bi_size];
             std::copy(other.bi_value,other.bi_value + bi_size, bi_value);  
         }
@@ -81,11 +80,16 @@ class bint
                 os << 0;
             else
             {
-                if(!number.bi_sign)
-                    os << '-';
-                
                 for(int i=0;i<number.bi_size;i++)
+                {
+                    int j =100'000'000;
+                    while(number.bi_value[i]%j==number.bi_value[i])
+                    {
+                        os << 0;
+                        j/=10;
+                    }
                     os << number.bi_value[i];
+                }
             }
 
             return os;
@@ -96,25 +100,27 @@ class bint
             std::string s;
             in >> s;
 
-            num.bi_size = (s.length()/9) + 1;
+            num.bi_size = (s.length()/9);
             num.bi_value = new int[num.bi_size];
 
-            if(s[0]=='-')
+            if(s.length()%9!=0)
             {
-                num.bi_sign = false;
-                s=s.substr(1);
-            }
-
-            for(int i=0;i<num.bi_size;i++)
-            {
-                if(s.length()>=9)
+                num.bi_size++;
+                num.bi_value[0] = num.str_to_int(s.substr(0,s.length()%9));
+                s=s.substr(s.length()%9);
+            
+                for(int i=1;i<num.bi_size;i++)
                 {
                     num.bi_value[i] = num.str_to_int(s.substr(0,9));
                     s=s.substr(9);
                 }
-                else
+            }
+            else
+            {
+                for(int i=0;i<num.bi_size;i++)
                 {
-                    num.bi_value[i] = num.str_to_int(s);
+                    num.bi_value[i] = num.str_to_int(s.substr(0,9));
+                    s=s.substr(9);
                 }
             }
 
@@ -127,9 +133,13 @@ class bint
                 delete[] bi_value;
         }
 
-        
-
 };
+
+
+
+
+
+
 
 int main()
 {
