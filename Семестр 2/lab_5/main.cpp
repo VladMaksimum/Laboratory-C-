@@ -90,11 +90,14 @@ class mvector
 
         void shrink_to_fit()
         {
-            int* tmp = new int[mv_size];
-            std::copy(mv_mass, mv_mass + mv_size, tmp);
-            mv_cap = mv_size;
-            delete[] mv_mass;
-            mv_mass = tmp;
+            if(mv_cap != mv_size)
+            {
+                int* tmp = new int[mv_size];
+                std::copy(mv_mass, mv_mass + mv_size, tmp);
+                mv_cap = mv_size;
+                delete[] mv_mass;
+                mv_mass = tmp;
+            }
         }
 
         int& front()
@@ -118,6 +121,7 @@ class mvector
             {
                 mv_mass[mv_size] = value;
                 mv_size++;
+                return;
             }
 
             mv_cap = mv_cap * 2 + 1;
@@ -174,6 +178,10 @@ class mvector
         }
         
 };
+
+
+
+
 
 int main()
 {
